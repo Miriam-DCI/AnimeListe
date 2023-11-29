@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <title>My Anime and Manga List</title>
+  </head>
+  <body>
+    <div id="AnimeBanner" class="container">
+      <div id="cardContainer">
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+      </div>
+    </div>
+    <div class="container">
+      <h1>My Anime and Manga List</h1>
+      <input
+        type="text"
+        id="animeInput"
+        placeholder="Enter Anime/Manga Title"
+      />
+      <button onclick="addToWatchedList('A')">Add Anime</button>
+      <button onclick="addToWatchedList('M')">Add Manga</button>
+
+      <ul id="watchedList"></ul>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
