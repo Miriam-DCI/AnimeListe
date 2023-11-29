@@ -1,11 +1,8 @@
-// AniList API credentials
-const apiUrl = "https://Anilistmikilior1V1.p.rapidapi.com";
-const apiKey = "f736ee409cmsh17c8916af343316p1bb6c9jsn7a63f7150ac5";
-
 /**
  * @description Funktion zum Hinzufügen von Anime oder Manga zur Watchlist
  * @param {string} type - "A" für Anime, "M" für Manga
  */
+// Hauptfunktion für das Hinzufügen von Anime oder Manga zur Watchlist
 async function addToWatchedList(type) {
   const inputElement = document.getElementById("animeInput");
   const title = inputElement.value.trim();
@@ -19,29 +16,55 @@ async function addToWatchedList(type) {
   }
 }
 
-/**
- * @description Funktion zum Hinzufügen von Anime oder Manga zur Watchlist in localStorage
- * @param {string} type - "A" für Anime, "M" für Manga
- * @param {string} title - Der Titel des Anime oder Manga
- */
+// Funktion zum Suchen nach Anime über die Jikan API
+async function searchAnime() {
+  const inputElement = document.getElementById("animeInput");
+  const query = inputElement.value.trim();
+
+  if (query !== "") {
+    try {
+      const response = await fetch(
+        `https://api.jikan.moe/v4/anime?q=${query}&limit=1`
+      );
+      const data = await response.json();
+
+      if (data.results.length > 0) {
+        const anime = data.results[0];
+        displayAnimeInfo(anime);
+      } else {
+        alert("No anime found!");
+      }
+    } catch (error) {
+      console.error("Error fetching anime data:", error);
+      alert("Error fetching anime data. Please try again later.");
+    }
+  }
+}
+
+// Funktion zum Anzeigen von Anime-Informationen auf der Seite
+function displayAnimeInfo(anime) {
+  const animeElement = document.getElementById("anime");
+  animeElement.innerHTML = `
+    <h2>${anime.title}</h2>
+    <img src="${anime.image_url}" alt="${anime.title}">
+    <p>${anime.synopsis}</p>
+    <button onclick="addToWatchedList('A')">Add to Watched List</button>
+  `;
+}
+
+// Funktion zum Hinzufügen von Anime oder Manga zur Watchlist in localStorage
 function addToLocalStorage(type, title) {
   let watchedList = JSON.parse(localStorage.getItem("watchedList")) || [];
-  // Füge den Typ und den Titel als Objekt hinzu
   watchedList.push({ type, title });
   localStorage.setItem("watchedList", JSON.stringify(watchedList));
 }
 
-/**
- * @description Funktion, um die Watchlist aus dem localStorage abzurufen
- * @returns {Array} - Die Watchlist als Array von Objekten { type, title }
- */
+// Funktion zum Abrufen der Watchlist aus dem localStorage
 function getWatchedListFromLocalStorage() {
   return JSON.parse(localStorage.getItem("watchedList")) || [];
 }
 
-/**
- * @description Funktion, um die Watchlist auf der Seite zu aktualisieren
- */
+// Funktion zum Aktualisieren der Watchlist auf der Seite
 function updateWatchedList() {
   const watchedListElement = document.getElementById("watchedList");
   watchedListElement.innerHTML = "";
@@ -59,7 +82,7 @@ function updateWatchedList() {
   });
 }
 
-// Function to delete an entry from the watched list
+// Funktion zum Löschen eines Eintrags aus der Watchlist
 function deleteEntry(index) {
   const watchedList = getWatchedListFromLocalStorage();
   const isConfirmed = confirm(
@@ -73,7 +96,7 @@ function deleteEntry(index) {
   }
 }
 
-// Function to edit an entry in the watched list
+// Funktion zum Bearbeiten eines Eintrags in der Watchlist
 function editEntry(index) {
   const watchedList = getWatchedListFromLocalStorage();
   const updatedTitle = prompt("Edit entry:", watchedList[index].title);
@@ -84,6 +107,3 @@ function editEntry(index) {
     updateWatchedList();
   }
 }
-
-// Initial update when the page loads
-updateWatchedList();
