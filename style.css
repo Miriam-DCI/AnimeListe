@@ -14,16 +14,12 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-#animeBanner {
-  color: #19314b;
-}
-
-#cardContainer {
-  color: #19314b;
-}
-
-.card {
-  color: #19314b;
+.parent {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
 }
 
 h1 {
@@ -49,18 +45,6 @@ button {
 ul {
   list-style: none;
   padding: 0;
-}
-
-li {
-  margin-bottom: 5px;
-  border-bottom: 1px solid #ddd;
-  padding: 8px;
-  display: flex;
-  justify-content: space-between;
-}
-
-li:last-child {
-  border-bottom: none;
 }
 
 /* Styles for the top anime banner */
