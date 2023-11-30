@@ -11,9 +11,11 @@
     <div id="list-container">
       <div>
         <label for="animeInput">Neuer Eintrag:</label>
-        <input type="text" id="animeInput" placeholder="Anime oder Manga" />
-        <button onclick="addToList()">Hinzufügen</button>
-        <button onclick="searchAnime()">Suche</button>
+        <form onsubmit="event.preventDefault(); addToAnimeList();">
+          <input type="text" id="animeInput" placeholder="Anime oder Manga" />
+          <button type="submit">Hinzufügen</button>
+          <button type="button" onclick="searchAnime()">Suche</button>
+        </form>
       </div>
 
       <div id="animeList"></div>

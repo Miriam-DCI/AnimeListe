@@ -21,6 +21,12 @@ h1 {
   margin-bottom: 5px;
 }
 
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .btn {
   cursor: pointer;
   background-color: #4caf50;
@@ -42,4 +48,9 @@ h1 {
 
 .btn-delete {
   background-color: #f44336;
+}
+
+/* Neue Regel für den "Bearbeiten"-Button */
+.btn-edit {
+  order: 1; /* Ändert die Reihenfolge des Elements innerhalb des flex containers */
 }
