@@ -47,6 +47,8 @@ function addToAnimeList() {
     updateLocalStorage();
     displayAnimeList();
     inputElement.value = ""; // Eingabefeld leeren nach dem Hinzufügen
+  } else {
+    alert("Bitte geben Sie einen gültigen Anime- oder Manga-Titel ein.");
   }
 }
 
@@ -80,7 +82,7 @@ function updateLocalStorage() {
 // API Jikan zum Abrufen von Informationen zu Anime
 function searchAnime() {
   const animeName = document.getElementById("animeInput").value;
-  const animeURL = `https://api.jikan.moe/v4/search/anime?q=${animeName}`;
+  const animeURL = `https://api.jikan.moe/v4/anime?q=${animeName}`;
 
   fetch(animeURL)
     .then((response) => {
@@ -90,19 +92,53 @@ function searchAnime() {
       return response.json();
     })
     .then((data) => {
-      const animeListContainer = document.getElementById("animeList");
+      console.log(data);
+
+      const animeListContainer = document.getElementById("animeList2");
       animeListContainer.innerHTML = "";
 
-      data.results.forEach((anime) => {
-        const animeItem = document.createElement("div");
-        animeItem.classList.add("anime-item");
-        animeItem.innerHTML = `
-          <img src="${anime.image_url}" />
-          <span>${anime.title}</span>
-          <button class="btn btn-add" onclick="addToAnimeList('${anime.title}')">Hinzufügen</button>
-        `;
-        animeListContainer.appendChild(animeItem);
-      });
+      if (data && data.data && data.data.length > 0) {
+        for (let i = 0; i < data.data.length; i++) {
+          const anime = data.data[i];
+
+          const animeItem = document.createElement("div");
+          animeItem.classList.add("anime-item");
+
+          const titleElement = document.createElement("span");
+          titleElement.textContent = anime.title;
+
+          const imageElement = document.createElement("img");
+          imageElement.src = anime.image_url;
+
+          const ratingElement = document.createElement("span");
+          ratingElement.textContent = `Rating: ${anime.score || "N/A"}`;
+
+          const descriptionElement = document.createElement("p");
+          descriptionElement.textContent =
+            anime.synopsis || "No description available.";
+
+          const ongoingElement = document.createElement("span");
+          ongoingElement.textContent = `Ongoing: ${
+            anime.airing ? "Yes" : "No"
+          }`;
+
+          const addButton = document.createElement("button");
+          addButton.classList.add("btn", "btn-add");
+          addButton.textContent = "Hinzufügen";
+          addButton.onclick = () => addToAnimeList(anime.title);
+
+          animeItem.appendChild(titleElement);
+          animeItem.appendChild(imageElement);
+          animeItem.appendChild(ratingElement);
+          animeItem.appendChild(descriptionElement);
+          animeItem.appendChild(ongoingElement);
+          animeItem.appendChild(addButton);
+
+          animeListContainer.appendChild(animeItem);
+        }
+      } else {
+        animeListContainer.textContent = "Keine Ergebnisse gefunden.";
+      }
     })
     .catch((error) => {
       console.error("Fehler bei der API-Anfrage:", error.message);
