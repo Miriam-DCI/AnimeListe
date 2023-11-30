@@ -3,22 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./node_modules/style.css" />
-    <title>Anime Watchlist</title>
+    <title>Anime & Manga Liste</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container">
-      <div id="search">
-        <div class="cards-container">
-          <div id="searchbar"></div>
-          <div class="cards"></div>
-          <div class="cards"></div>
-          <div class="cards"></div>
-          <div class="cards"></div>
-        </div>
+    <h1>Anime & Manga Liste</h1>
+    <div id="list-container">
+      <div>
+        <label for="animeInput">Neuer Eintrag:</label>
+        <input type="text" id="animeInput" placeholder="Anime oder Manga" />
+        <button onclick="addToList()">Hinzufügen</button>
+        <button onclick="searchAnime()">Suche</button>
       </div>
-      <div id="list" class="list-container"></div>
+
+      <div id="animeList"></div>
     </div>
-    <script src="./node_modules/main.js"></script>
+
+    <script src="script.js"></script>
   </body>
 </html>

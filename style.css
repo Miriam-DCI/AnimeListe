@@ -1,0 +1,45 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+#list-container {
+  max-width: 600px;
+  margin: auto;
+}
+
+.anime-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 5px;
+}
+
+.btn {
+  cursor: pointer;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 2px;
+  transition-duration: 0.4s;
+  border-radius: 3px;
+}
+
+.btn-edit {
+  background-color: #008cba;
+}
+
+.btn-delete {
+  background-color: #f44336;
+}
