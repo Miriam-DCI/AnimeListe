@@ -44,7 +44,7 @@ function addToAnimeList() {
 
   if (newAnime !== "") {
     animeList.push(newAnime);
-    updateLocalStorage();
+    updateLocalStorage(); // sicherstellen, dass diese Zeile nach dem Hinzufügen steht
     displayAnimeList();
     inputElement.value = ""; // Eingabefeld leeren nach dem Hinzufügen
   } else {
@@ -97,6 +97,11 @@ function searchAnime() {
       const animeListContainer = document.getElementById("animeList2");
       animeListContainer.innerHTML = "";
 
+      const headlineElement = document.createElement("h2");
+      headlineElement.textContent = "Suchergebnisse";
+
+      animeListContainer.appendChild(headlineElement);
+
       if (data && data.data && data.data.length > 0) {
         for (let i = 0; i < data.data.length; i++) {
           const anime = data.data[i];
@@ -108,7 +113,13 @@ function searchAnime() {
           titleElement.textContent = anime.title;
 
           const imageElement = document.createElement("img");
-          imageElement.src = anime.image_url;
+
+          // Verwende die small_image_url, wenn verfügbar, sonst die image_url
+          const imageURL =
+            anime.images?.small_image_url || anime.images?.image_url;
+          imageElement.src = imageURL;
+
+          imageElement.classList.add("anime-item-img");
 
           const ratingElement = document.createElement("span");
           ratingElement.textContent = `Rating: ${anime.score || "N/A"}`;
@@ -125,12 +136,12 @@ function searchAnime() {
           const addButton = document.createElement("button");
           addButton.classList.add("btn", "btn-add");
           addButton.textContent = "Hinzufügen";
-          addButton.onclick = () => addToAnimeList(anime.title);
+          addButton.onclick = () => addToAnimeList(anime.title); // Hier wird die Funktion korrekt aufgerufen
 
           animeItem.appendChild(titleElement);
           animeItem.appendChild(imageElement);
           animeItem.appendChild(ratingElement);
-          animeItem.appendChild(descriptionElement);
+          // animeItem.appendChild(descriptionElement);
           animeItem.appendChild(ongoingElement);
           animeItem.appendChild(addButton);
 
@@ -144,6 +155,5 @@ function searchAnime() {
       console.error("Fehler bei der API-Anfrage:", error.message);
     });
 }
-
 // Initialanzeige der Liste
 displayAnimeList();

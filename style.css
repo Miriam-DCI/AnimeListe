@@ -54,3 +54,10 @@ h1 {
 .btn-edit {
   order: 1; /* Ändert die Reihenfolge des Elements innerhalb des flex containers */
 }
+
+.anime-item-img {
+  width: 100px;
+  height: 100px;
+  margin-right: 10px;
+  object-fit: cover;
+}
