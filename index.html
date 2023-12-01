@@ -10,18 +10,16 @@
     <h1>Anime & Manga Liste</h1>
     <div id="list-container">
       <div>
-        <label for="animeInput">Neuer Eintrag:</label>
+        <label for="animeInput">Neuer Eintrag: </label>
         <form onsubmit="event.preventDefault(); addToAnimeList();">
           <input type="text" id="animeInput" placeholder="Anime oder Manga" />
           <button type="submit">Hinzufügen</button>
           <button type="button" onclick="searchAnime()">Suche</button>
         </form>
       </div>
-
-      <div id="animeList"></div>
-      <div id="animeList2"></div>
+      <div class="animeList"></div>
     </div>
-
+    <div class="anime-search-result"></div>
     <script src="script.js"></script>
   </body>
 </html>

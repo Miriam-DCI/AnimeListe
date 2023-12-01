@@ -1,6 +1,7 @@
 body {
   font-family: Arial, sans-serif;
-  margin: 20px;
+  margin: 2em;
+  background-color: #3f3f3f;
 }
 
 h1 {
@@ -8,15 +9,32 @@ h1 {
 }
 
 #list-container {
-  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  max-width: 60vw;
   margin: auto;
+  background-color: #f3f3f3;
+}
+
+.animelist {
+  display: flex;
+  flex-direction: column;
+  max-width: 60vw;
+  margin: auto;
+  background-color: #f3f3f3;
+}
+.anime-search-result {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  background-color: #f3f3f3;
 }
 
 .anime-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 1em;
   border: 1px solid #ccc;
   margin-bottom: 5px;
 }

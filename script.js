@@ -1,9 +1,20 @@
+/*
+
+TODO:
+- hinzufügen button überarbeiten so das der richtige title hinzugefügt wird
+- styling überarbeiten
+- suche überarbeiten
+- Filter hinzufügen
+
+
+*/
+
 // Initialisiere die Liste mit Daten aus dem LocalStorage
 const animeList = JSON.parse(localStorage.getItem("animeList")) || [];
 
 // Funktion zum Anzeigen der Liste
 function displayAnimeList() {
-  const listContainer = document.getElementById("animeList");
+  const listContainer = document.querySelector(".animeList");
   listContainer.innerHTML = "";
 
   animeList.forEach((item, index) => {
@@ -38,17 +49,23 @@ function displayAnimeList() {
 }
 
 // Funktion zum Hinzufügen von Einträgen
-function addToAnimeList() {
+
+function addToAnimeList(name) {
   const inputElement = document.getElementById("animeInput");
   const newAnime = inputElement.value.trim();
-
-  if (newAnime !== "") {
-    animeList.push(newAnime);
-    updateLocalStorage(); // sicherstellen, dass diese Zeile nach dem Hinzufügen steht
-    displayAnimeList();
-    inputElement.value = ""; // Eingabefeld leeren nach dem Hinzufügen
-  } else {
-    alert("Bitte geben Sie einen gültigen Anime- oder Manga-Titel ein.");
+  if (newAnime !== "" || name !== "") {
+    if (newAnime !== name) {
+      animeList.push(name);
+      updateLocalStorage(); // sicherstellen, dass diese Zeile nach dem Hinzufügen steht
+      displayAnimeList();
+      inputElement.value = "";
+    } else if (name === "") {
+      animeList.push(newAnime);
+      updateLocalStorage(); // sicherstellen, dass diese Zeile nach dem Hinzufügen steht
+      displayAnimeList();
+    } else {
+      alert("Dieser Eintrag ist bereits vorhanden.");
+    }
   }
 }
 
@@ -94,7 +111,7 @@ function searchAnime() {
     .then((data) => {
       console.log(data);
 
-      const animeListContainer = document.getElementById("animeList2");
+      const animeListContainer = document.querySelector(".anime-search-result");
       animeListContainer.innerHTML = "";
 
       const headlineElement = document.createElement("h2");
@@ -105,6 +122,9 @@ function searchAnime() {
       if (data && data.data && data.data.length > 0) {
         for (let i = 0; i < data.data.length; i++) {
           const anime = data.data[i];
+
+          const animeSearchResult = document.createElement("div");
+          animeSearchResult.classList.add("anime-search-result");
 
           const animeItem = document.createElement("div");
           animeItem.classList.add("anime-item");
