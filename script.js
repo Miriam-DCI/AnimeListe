@@ -116,7 +116,9 @@ function searchAnime() {
 
           // Verwende die small_image_url, wenn verfügbar, sonst die image_url
           const imageURL =
-            anime.images?.small_image_url || anime.images?.image_url;
+            anime.images.jpg?.large_image_url ||
+            anime.images.jpg?.image_url ||
+            anime.images.jpg?.small_image_url;
           imageElement.src = imageURL;
 
           imageElement.classList.add("anime-item-img");
