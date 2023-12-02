@@ -7,18 +7,33 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>Anime & Manga Liste</h1>
+    <nav class="navbar">
+      <ul class="black-border">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="anime.html">Anime</a></li>
+        <li><a href="manga.html">Manga</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+    <section class="intro-text">
+      <h1 class="black-border">Home</h1>
+      <p>
+        Hier kannst du deine Anime und Manga Liste verwalten. Du kannst neue
+        Einträge hinzufügen, alte Einträge löschen und deine Liste als PDF
+        exportieren.
+      </p>
+    </section>
+    <section class="list">
+    <h2 class="white-border">Anime & Manga Liste</h2>
     <div id="list-container">
-      <div>
         <label for="animeInput">Neuer Eintrag: </label>
         <form onsubmit="event.preventDefault(); addToAnimeList();">
           <input type="text" id="animeInput" placeholder="Anime oder Manga" />
-          <button type="submit">Hinzufügen</button>
           <button type="button" onclick="searchAnime()">Suche</button>
         </form>
+        <div class="animeList"></div>
+      </section>
       </div>
-      <div class="animeList"></div>
-    </div>
     <div class="anime-search-result"></div>
     <script src="script.js"></script>
   </body>

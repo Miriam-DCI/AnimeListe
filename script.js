@@ -1,11 +1,10 @@
 /*
 
 TODO:
-- hinzufügen button überarbeiten so das der richtige title hinzugefügt wird
 - styling überarbeiten
 - suche überarbeiten
 - Filter hinzufügen
-
+- zweite seite bei den such ergebnissen hinzufügen
 
 */
 
