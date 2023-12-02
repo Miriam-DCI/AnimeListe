@@ -123,50 +123,51 @@ function searchAnime() {
         for (let i = 0; i < data.data.length; i++) {
           const anime = data.data[i];
 
+          // Hier werden verschiedene DOM-Elemente erstellt und konfiguriert
           const animeSearchResult = document.createElement("div");
           animeSearchResult.classList.add("anime-search-result");
 
           const animeItem = document.createElement("div");
-          animeItem.classList.add("anime-item");
+          animeItem.classList.add("anime-search-item");
 
+          // Ein span-Element für den Titel des Animes wird erstellt und konfiguriert
           const titleElement = document.createElement("span");
           titleElement.textContent = anime.title;
 
+          // Ein Bild-Element wird erstellt und konfiguriert, um das Anime-Bild anzuzeigen
           const imageElement = document.createElement("img");
-
-          // Verwende die small_image_url, wenn verfügbar, sonst die image_url
           const imageURL =
             anime.images.jpg?.large_image_url ||
             anime.images.jpg?.image_url ||
             anime.images.jpg?.small_image_url;
           imageElement.src = imageURL;
+          imageElement.classList.add("anime-search-item-img");
 
-          imageElement.classList.add("anime-item-img");
-
+          // Ein span-Element für die Bewertung des Animes wird erstellt und konfiguriert
           const ratingElement = document.createElement("span");
           ratingElement.textContent = `Rating: ${anime.score || "N/A"}`;
 
-          const descriptionElement = document.createElement("p");
-          descriptionElement.textContent =
-            anime.synopsis || "No description available.";
-
+          // Ein span-Element für den Status des Animes (laufend oder nicht) wird erstellt und konfiguriert
           const ongoingElement = document.createElement("span");
           ongoingElement.textContent = `Ongoing: ${
             anime.airing ? "Yes" : "No"
           }`;
 
+          // Ein Button-Element zum Hinzufügen des Animes zur Liste wird erstellt und konfiguriert
           const addButton = document.createElement("button");
           addButton.classList.add("btn", "btn-add");
           addButton.textContent = "Hinzufügen";
-          addButton.onclick = () => addToAnimeList(anime.title); // Hier wird die Funktion korrekt aufgerufen
+          // Hier wird die Funktion `addToAnimeList` aufgerufen, wenn der Button geklickt wird
+          addButton.onclick = () => addToAnimeList(anime.title);
 
+          // Die erstellten Elemente werden dem `animeItem`-Element hinzugefügt
           animeItem.appendChild(titleElement);
           animeItem.appendChild(imageElement);
           animeItem.appendChild(ratingElement);
-          // animeItem.appendChild(descriptionElement);
           animeItem.appendChild(ongoingElement);
           animeItem.appendChild(addButton);
 
+          // Das `animeItem`-Element wird dem `animeListContainer` hinzugefügt
           animeListContainer.appendChild(animeItem);
         }
       } else {

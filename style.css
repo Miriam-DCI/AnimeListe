@@ -16,7 +16,7 @@ h1 {
   background-color: #f3f3f3;
 }
 
-.animelist {
+.animeList {
   display: flex;
   flex-direction: column;
   max-width: 60vw;
@@ -25,7 +25,8 @@ h1 {
 }
 .anime-search-result {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  flex-direction: row;
   margin: auto;
   background-color: #f3f3f3;
 }
@@ -33,10 +34,32 @@ h1 {
 .anime-item {
   display: flex;
   justify-content: space-between;
+  width: 45vw;
+  flex-direction: row;
   align-items: center;
   padding: 1em;
   border: 1px solid #ccc;
   margin-bottom: 5px;
+}
+.anime-search-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 5vw;
+  flex-basis: calc(
+    20%
+  ); /* Berechnet die Breite für maximal 5 Elemente pro Reihe */
+  margin: 5px; /* Abstand zwischen den Elementen */
+  padding: 1em;
+  border: 1px solid #ccc;
+  margin: 0.5px;
+  border-radius: 15px;
+}
+.anime-search-item-img {
+  width: 100px;
+  height: 100px;
+  margin-right: 10px;
+  object-fit: cover;
 }
 
 .button {
