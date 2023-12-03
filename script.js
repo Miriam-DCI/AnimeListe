@@ -47,6 +47,7 @@ function createImageElement(image) {
     image?.large_image_url || image?.image_url || image?.small_image_url;
   imageElement.src = imageURL;
   imageElement.classList.add("anime-search-item-img");
+
   return imageElement;
 }
 
