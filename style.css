@@ -18,6 +18,8 @@ body {
   background-color: rgb(35, 62, 136);
   color: black;
   margin: 0;
+  background-image: url("https://images8.alphacoders.com/133/1331544.png"); /* Hier den Pfad zum Bild einfügen */
+  background-size: cover; /* Bildgröße anpassen */
 }
 
 h1,
@@ -68,13 +70,15 @@ h2 {
 }
 
 .intro-text {
-  width: 95vw;
+  width: 100vw;
   align-items: center;
   justify-content: center;
   text-align: center;
   padding-top: 5em;
   margin: 0 auto;
-  background-color: #008cba;
+
+  background-position: center; /* Zentrierung des Hintergrundbilds */
+  color: white; /* Textfarbe auf weiß ändern, um lesbar zu bleiben */
 }
 
 .intro-text p {

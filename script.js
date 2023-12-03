@@ -216,6 +216,7 @@ function displaySearchResults(data) {
   animeListContainer.innerHTML = "";
 
   const headlineElement = createElementWithText("h2", "Suchergebnisse");
+  headlineElement.classList.add("white-border");
   animeListContainer.appendChild(headlineElement);
 
   if (data && data.data && data.data.length > 0) {
