@@ -13,6 +13,7 @@ h2 {
   position: fixed;
   top: 0;
   left: 0;
+  height: 6vh;
   width: 100%;
   background-color: rgba(
     51,
@@ -38,6 +39,7 @@ h2 {
 .navbar ul li {
   display: inline-block; /* Macht die Listenelemente inline und zentriert sie */
   float: none;
+  font-size: 1.5em;
 }
 
 /* Stil für den Link in jedem Listenpunkt */
@@ -56,27 +58,35 @@ h2 {
 }
 
 .intro-text {
+  width: 95vw;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 5em;
+  padding-top: 5em;
   margin: 0px;
   color: white;
   background-color: #008cba;
 }
+
+.intro-text p {
+  font-size: 1.5em;
+}
+
 .list {
   display: flex;
   flex-direction: column;
-  max-width: 60vw;
+  max-width: 75vw;
   margin: auto;
   background-color: red;
+  border-radius: 15px;
 }
-#list-container {
+.list-container {
   display: flex;
   flex-direction: column;
-  max-width: 60vw;
+  max-width: 90vw;
   margin: auto;
   background-color: #f3f3f3;
+  border-radius: 15px;
 }
 
 .animeList {
@@ -164,6 +174,82 @@ h2 {
   height: 100px;
   margin-right: 10px;
   object-fit: cover;
+}
+
+/* 
+
+schrift styling 
+
+*/
+
+/* Großer Text */
+.large-text {
+  font-size: 24px;
+}
+
+/* Kleiner Text */
+.small-text {
+  font-size: 14px;
+}
+
+/* Roter Text */
+.red-text {
+  color: red;
+}
+
+/* Blauer Text */
+.blue-text {
+  color: blue;
+}
+
+/* Feste Schriftart */
+.fixed-font {
+  font-family: "Courier New", Courier, monospace;
+}
+
+/* Serifenschriftart */
+.serif-font {
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+/* Serifenlose Schriftart */
+.sans-serif-font {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Linksbündiger Text */
+.left-align {
+  text-align: left;
+}
+
+/* Zentrierter Text */
+.center-align {
+  text-align: center;
+}
+
+/* Rechtsbündiger Text */
+.right-align {
+  text-align: right;
+}
+
+/* Fetter Text */
+.bold-text {
+  font-weight: bold;
+}
+
+/* Kursiver Text */
+.italic-text {
+  font-style: italic;
+}
+
+/* Unterstrichener Text */
+.underline-text {
+  text-decoration: underline;
+}
+
+/* Durchgestrichener Text */
+.linethrough-text {
+  text-decoration: line-through;
 }
 
 .black-border {

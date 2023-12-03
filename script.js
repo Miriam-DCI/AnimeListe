@@ -1,74 +1,119 @@
-/*
-
-TODO:
-- styling überarbeiten
-- suche überarbeiten
-- Filter hinzufügen
-- zweite seite bei den such ergebnissen hinzufügen
-
-*/
-
-// Initialisiere die Liste mit Daten aus dem LocalStorage
+/**
+ * @description Die Liste von Animes, die aus dem LocalStorage geladen wird oder eine leere Liste, falls keine vorhanden ist.
+ * @type {Array.<string>}
+ */
 const animeList = JSON.parse(localStorage.getItem("animeList")) || [];
 
-// Funktion zum Anzeigen der Liste
+/**
+ * @description Erstellt ein DOM-Element (Listenelement) mit einem Textinhalt.
+ * @param {string} item - Der Textinhalt für das Listenelement.
+ * @param {number} index - Der Index des Listenelements.
+ * @returns {HTMLElement} - Das erstellte DOM-Element (Listenelement).
+ */
+function createListItem(item, index) {
+  const listItem = document.createElement("div");
+  listItem.id = `animeItem_${index}`;
+  listItem.classList.add("anime-item");
+
+  const spanElement = createElementWithText("span", item);
+  const buttonContainer = createButtonContainer(index);
+
+  [spanElement, buttonContainer].forEach((element) => {
+    listItem.appendChild(element);
+  });
+
+  return listItem;
+}
+
+/**
+ * @description Erstellt ein DOM-Element mit Textinhalt.
+ * @param {string} elementType - Der Typ des DOM-Elements (z. B. "span", "div").
+ * @param {string} textContent - Der Textinhalt für das DOM-Element.
+ * @returns {HTMLElement} - Das erstellte DOM-Element.
+ */
+function createElementWithText(elementType, textContent) {
+  const element = document.createElement(elementType);
+  element.textContent = textContent;
+  return element;
+}
+
+/**
+ * @description Erstellt den Container für die Buttons (Bearbeiten und Löschen).
+ * @param {number} index - Der Index des Listenelements.
+ * @returns {HTMLElement} - Der Container für die Buttons.
+ */
+function createButtonContainer(index) {
+  const buttonContainer = document.createElement("div");
+  buttonContainer.classList.add("button");
+
+  const editButton = createButton("Bearbeiten", "btn-edit", () =>
+    editAnimeItem(index)
+  );
+  const deleteButton = createButton("Löschen", "btn-delete", () =>
+    deleteAnimeItem(index)
+  );
+
+  [editButton, deleteButton].forEach((button) => {
+    buttonContainer.appendChild(button);
+  });
+
+  return buttonContainer;
+}
+
+/**
+ * @description Erstellt einen Button mit einem Event-Handler.
+ * @param {string} text - Der Text auf dem Button.
+ * @param {string} className - Die CSS-Klasse für den Button.
+ * @param {Function} onClick - Die Funktion, die beim Klicken auf den Button ausgeführt wird.
+ * @returns {HTMLButtonElement} - Der erstellte Button.
+ */
+function createButton(text, className, onClick) {
+  const button = document.createElement("button");
+  button.classList.add("btn", className);
+  button.textContent = text;
+  button.onclick = onClick;
+  return button;
+}
+
+/**
+ * @description Anzeigt die gespeicherte Anime-Liste im DOM.
+ */
 function displayAnimeList() {
   const listContainer = document.querySelector(".animeList");
   listContainer.innerHTML = "";
 
   animeList.forEach((item, index) => {
-    const listItem = document.createElement("div");
-    listItem.id = `animeItem_${index}`; // Füge eine eindeutige ID hinzu, falls benötigt
-    listItem.classList.add("anime-item");
-
-    const spanElement = document.createElement("span");
-    spanElement.textContent = item;
-
-    const buttonContainer = document.createElement("div");
-    buttonContainer.classList.add("button");
-
-    const editButton = document.createElement("button");
-    editButton.classList.add("btn", "btn-edit");
-    editButton.textContent = "Bearbeiten";
-    editButton.onclick = () => editAnimeItem(index);
-
-    const deleteButton = document.createElement("button");
-    deleteButton.classList.add("btn", "btn-delete");
-    deleteButton.textContent = "Löschen";
-    deleteButton.onclick = () => deleteAnimeItem(index);
-
-    buttonContainer.appendChild(editButton);
-    buttonContainer.appendChild(deleteButton);
-
-    listItem.appendChild(spanElement);
-    listItem.appendChild(buttonContainer);
-
+    const listItem = createListItem(item, index);
     listContainer.appendChild(listItem);
   });
 }
 
-// Funktion zum Hinzufügen von Einträgen
-
+/**
+ * @description Fügt einen neuen Eintrag zur Anime-Liste hinzu.
+ * @param {string} name - Der Name des neuen Eintrags.
+ */
 function addToAnimeList(name) {
   const inputElement = document.getElementById("animeInput");
   const newAnime = inputElement.value.trim();
-  if (newAnime !== "" || name !== "") {
-    if (newAnime !== name) {
-      animeList.push(name);
-      updateLocalStorage(); // sicherstellen, dass diese Zeile nach dem Hinzufügen steht
-      displayAnimeList();
-      inputElement.value = "";
-    } else if (name === "") {
-      animeList.push(newAnime);
-      updateLocalStorage(); // sicherstellen, dass diese Zeile nach dem Hinzufügen steht
-      displayAnimeList();
-    } else {
-      alert("Dieser Eintrag ist bereits vorhanden.");
-    }
+
+  if ((newAnime !== "" || name !== "") && newAnime !== name) {
+    animeList.push(name || newAnime);
+    updateLocalStorage();
+    displayAnimeList();
+    inputElement.value = "";
+  } else if (name === "") {
+    animeList.push(newAnime);
+    updateLocalStorage();
+    displayAnimeList();
+  } else {
+    alert("Dieser Eintrag ist bereits vorhanden.");
   }
 }
 
-// Funktion zum Bearbeiten von Einträgen
+/**
+ * @description Bearbeitet einen Eintrag in der Anime-Liste.
+ * @param {number} index - Der Index des zu bearbeitenden Eintrags.
+ */
 function editAnimeItem(index) {
   const updatedItem = prompt("Bearbeite den Eintrag:", animeList[index]);
   if (updatedItem !== null) {
@@ -78,7 +123,10 @@ function editAnimeItem(index) {
   }
 }
 
-// Funktion zum Löschen von Einträgen
+/**
+ * @description Löscht einen Eintrag aus der Anime-Liste.
+ * @param {number} index - Der Index des zu löschenden Eintrags.
+ */
 function deleteAnimeItem(index) {
   const confirmDelete = confirm(
     "Bist du sicher, dass du diesen Eintrag löschen möchtest?"
@@ -90,12 +138,73 @@ function deleteAnimeItem(index) {
   }
 }
 
-// Funktion zum Aktualisieren des LocalStorage
+/**
+ * @description Aktualisiert den LocalStorage mit der aktuellen Anime-Liste.
+ */
 function updateLocalStorage() {
   localStorage.setItem("animeList", JSON.stringify(animeList));
 }
 
-// API Jikan zum Abrufen von Informationen zu Anime
+/**
+ * @description Erstellt ein DOM-Element für einen Anime-Eintrag basierend auf den API-Daten.
+ * @param {Object} anime - Die Informationen zum Anime.
+ * @returns {HTMLElement} - Das erstellte DOM-Element für den Anime-Eintrag.
+ */
+function createAnimeItem(anime) {
+  const animeItem = document.createElement("div");
+  animeItem.classList.add("anime-search-item");
+
+  const titleElement = createElementWithText("span", anime.title);
+  const imageElement = createImageElement(anime.images.jpg);
+  const ratingElement = createElementWithText(
+    "span",
+    `Rating: ${anime.score || "N/A"}`
+  );
+  const ongoingElement = createElementWithText(
+    "span",
+    `Ongoing: ${anime.airing ? "Yes" : "No"}`
+  );
+  const addButton = createButton("Hinzufügen", "btn-add", () =>
+    addToAnimeList(anime.title)
+  );
+
+  [
+    titleElement,
+    imageElement,
+    ratingElement,
+    ongoingElement,
+    addButton,
+  ].forEach((element) => {
+    animeItem.appendChild(element);
+  });
+
+  return animeItem;
+}
+
+/**
+ * @description Zeigt die Suchergebnisse im DOM an.
+ * @param {Object} data - Die Daten der Suchergebnisse.
+ */
+function displaySearchResults(data) {
+  const animeListContainer = document.querySelector(".anime-search-result");
+  animeListContainer.innerHTML = "";
+
+  const headlineElement = createElementWithText("h2", "Suchergebnisse");
+  animeListContainer.appendChild(headlineElement);
+
+  if (data && data.data && data.data.length > 0) {
+    data.data.forEach((anime) => {
+      const animeItem = createAnimeItem(anime);
+      animeListContainer.appendChild(animeItem);
+    });
+  } else {
+    animeListContainer.textContent = "Keine Ergebnisse gefunden.";
+  }
+}
+
+/**
+ * @description Führt eine Anime-Suche basierend auf dem eingegebenen Suchbegriff durch.
+ */
 function searchAnime() {
   const animeName = document.getElementById("animeInput").value;
   const animeURL = `https://api.jikan.moe/v4/anime?q=${animeName}`;
@@ -109,73 +218,12 @@ function searchAnime() {
     })
     .then((data) => {
       console.log(data);
-
-      const animeListContainer = document.querySelector(".anime-search-result");
-      animeListContainer.innerHTML = "";
-
-      const headlineElement = document.createElement("h2");
-      headlineElement.textContent = "Suchergebnisse";
-
-      animeListContainer.appendChild(headlineElement);
-
-      if (data && data.data && data.data.length > 0) {
-        for (let i = 0; i < data.data.length; i++) {
-          const anime = data.data[i];
-
-          // Hier werden verschiedene DOM-Elemente erstellt und konfiguriert
-          const animeSearchResult = document.createElement("div");
-          animeSearchResult.classList.add("anime-search-result");
-
-          const animeItem = document.createElement("div");
-          animeItem.classList.add("anime-search-item");
-
-          // Ein span-Element für den Titel des Animes wird erstellt und konfiguriert
-          const titleElement = document.createElement("span");
-          titleElement.textContent = anime.title;
-
-          // Ein Bild-Element wird erstellt und konfiguriert, um das Anime-Bild anzuzeigen
-          const imageElement = document.createElement("img");
-          const imageURL =
-            anime.images.jpg?.large_image_url ||
-            anime.images.jpg?.image_url ||
-            anime.images.jpg?.small_image_url;
-          imageElement.src = imageURL;
-          imageElement.classList.add("anime-search-item-img");
-
-          // Ein span-Element für die Bewertung des Animes wird erstellt und konfiguriert
-          const ratingElement = document.createElement("span");
-          ratingElement.textContent = `Rating: ${anime.score || "N/A"}`;
-
-          // Ein span-Element für den Status des Animes (laufend oder nicht) wird erstellt und konfiguriert
-          const ongoingElement = document.createElement("span");
-          ongoingElement.textContent = `Ongoing: ${
-            anime.airing ? "Yes" : "No"
-          }`;
-
-          // Ein Button-Element zum Hinzufügen des Animes zur Liste wird erstellt und konfiguriert
-          const addButton = document.createElement("button");
-          addButton.classList.add("btn", "btn-add");
-          addButton.textContent = "Hinzufügen";
-          // Hier wird die Funktion `addToAnimeList` aufgerufen, wenn der Button geklickt wird
-          addButton.onclick = () => addToAnimeList(anime.title);
-
-          // Die erstellten Elemente werden dem `animeItem`-Element hinzugefügt
-          animeItem.appendChild(titleElement);
-          animeItem.appendChild(imageElement);
-          animeItem.appendChild(ratingElement);
-          animeItem.appendChild(ongoingElement);
-          animeItem.appendChild(addButton);
-
-          // Das `animeItem`-Element wird dem `animeListContainer` hinzugefügt
-          animeListContainer.appendChild(animeItem);
-        }
-      } else {
-        animeListContainer.textContent = "Keine Ergebnisse gefunden.";
-      }
+      displaySearchResults(data);
     })
     .catch((error) => {
       console.error("Fehler bei der API-Anfrage:", error.message);
     });
 }
-// Initialanzeige der Liste
+
+// Zeigt die gespeicherte Anime-Liste beim Laden der Seite an.
 displayAnimeList();
