@@ -26,6 +26,31 @@ function createListItem(item, index) {
 }
 
 /**
+ * @description Erstellt ein DOM-Element für einen Anime-Eintrag basierend auf den API-Daten.
+ * @param {Object} anime - Die Informationen zum Anime.
+ * @returns {HTMLElement} - Das erstellte DOM-Element für den Anime-Eintrag.
+ */
+function createAnimeItem(anime) {
+  // ...
+  const imageElement = createImageElement(anime.images.jpg);
+  // ...
+}
+
+/**
+ * @description Erstellt ein Bild-Element für den Anime-Eintrag.
+ * @param {string} image - URL des Bildes.
+ * @returns {HTMLImageElement} - Das erstellte Bild-Element.
+ */
+function createImageElement(image) {
+  const imageElement = document.createElement("img");
+  const imageURL =
+    image?.large_image_url || image?.image_url || image?.small_image_url;
+  imageElement.src = imageURL;
+  imageElement.classList.add("anime-search-item-img");
+  return imageElement;
+}
+
+/**
  * @description Erstellt ein DOM-Element mit Textinhalt.
  * @param {string} elementType - Der Typ des DOM-Elements (z. B. "span", "div").
  * @param {string} textContent - Der Textinhalt für das DOM-Element.
