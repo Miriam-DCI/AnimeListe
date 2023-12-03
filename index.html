@@ -4,38 +4,37 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Anime & Manga Liste</title>
+    <!-- Link zu deinem CSS-Stylesheet -->
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <nav class="navbar">
-      <ul class="black-border">
+    <nav class="navbar white-border">
+      <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="anime.html">Anime</a></li>
         <li><a href="manga.html">Manga</a></li>
-        <li><a href="about.html">About</a></li>
       </ul>
     </nav>
-    <section class="intro-text">
-      <h1 class="black-border">Home</h1>
-      <p class="black-border">
-        Hier kannst du deine Anime und Manga Liste verwalten. Du kannst neue
-        Einträge hinzufügen, alte Einträge löschen
-      </p>
-    </section>
-    <section class="list">
-    <h2 class="white-border large-text underline-text bold-text">Anime Liste</h2>
-    <div class="list-container">
-        <!-- <label for="animeInput">Neuer Eintrag: </label> -->
-        <h2 class="bold-text left-align">Anime: </h2>
+    <div class="main-content">
+      <section class="intro-text">
+        <h1>Home</h1>
+        <p>
+          Hier kannst du deine Anime und Manga Liste verwalten. Du kannst neue
+          Einträge hinzufügen und alte Einträge löschen.
+        </p>
+      </section>
+      <section class="list-container">
+        <h2>Anime Liste</h2>
         <form onsubmit="event.preventDefault(); addToAnimeList();">
           <input type="text" id="animeInput" placeholder="Anime oder Manga" />
           <button type="button" onclick="searchAnime()">Suche</button>
         </form>
-        <div class="animeList"></div>
+        <div class="animeList">
+          <!-- Karten für Anime-Einträge werden hier dynamisch eingefügt -->
+        </div>
       </section>
-      </div>
-    <div class="anime-search-result"></div>
+      <div class="anime-search-result"></div>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>
-<!-- const animeURL = `https://api.jikan.moe/v4/anime?q=${animeName}`; -->

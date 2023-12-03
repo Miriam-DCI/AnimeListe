@@ -1,32 +1,41 @@
+/* 
+TODO:
+-media queries
+-buttons
+*/
+*/
+
+/* Reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Global Styles */
 body {
   font-family: Arial, sans-serif;
-  margin: 2em;
   background-color: rgb(35, 62, 136);
+  color: black;
+  margin: 0;
 }
 
 h1,
 h2 {
   text-align: center;
+  margin: 1em 0;
 }
-/* Stil für die gesamte Navigationsleiste */
+
+/* Navigation Bar */
 .navbar {
+  background-color: rgba(51, 51, 51, 0.7);
   position: fixed;
   top: 0;
   left: 0;
-  height: 6vh;
   width: 100%;
-  background-color: rgba(
-    51,
-    51,
-    51,
-    0.7
-  ); /* Hier wird die Transparenz festgelegt (0.7) */
-  z-index: 1; /* Damit die Navigationsleiste über den anderen Elementen liegt */
-
-  transition: top 0.3s;
+  z-index: 1;
 }
 
-/* Stil für die Liste innerhalb der Navigationsleiste */
 .navbar ul {
   list-style-type: none;
   margin: 0;
@@ -35,26 +44,27 @@ h2 {
   text-align: center;
 }
 
-/* Stil für jedes Listenelement */
 .navbar ul li {
-  display: inline-block; /* Macht die Listenelemente inline und zentriert sie */
-  float: none;
+  display: inline-block;
   font-size: 1.5em;
 }
 
-/* Stil für den Link in jedem Listenpunkt */
 .navbar ul li a {
   display: block;
-  color: white;
+  color: black;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
 }
 
-/* Stil für den Link beim Hovern */
 .navbar ul li a:hover {
   background-color: #ddd;
   color: black;
+}
+
+/* Main Content */
+.main-content {
+  padding-top: 6vh; /* Adjust to match navbar height */
 }
 
 .intro-text {
@@ -63,8 +73,7 @@ h2 {
   justify-content: center;
   text-align: center;
   padding-top: 5em;
-  margin: 0px;
-  color: white;
+  margin: 0 auto;
   background-color: #008cba;
 }
 
@@ -72,117 +81,157 @@ h2 {
   font-size: 1.5em;
 }
 
-.list {
-  display: flex;
-  flex-direction: column;
-  max-width: 75vw;
-  margin: auto;
-  background-color: red;
-  border-radius: 15px;
-}
 .list-container {
-  display: flex;
-  flex-direction: column;
-  max-width: 90vw;
+  max-width: 75vw;
   margin: auto;
   background-color: #f3f3f3;
   border-radius: 15px;
+  padding: 1em;
 }
 
 .animeList {
-  display: flex;
-  flex-direction: column;
-  max-width: 60vw;
-  margin: auto;
-  background-color: #f3f3f3;
-}
-.anime-search-result {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  margin: auto;
-  background-color: #f3f3f3;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  justify-content: center;
+  margin: 2vw;
 }
 
 .anime-item {
   display: flex;
-  justify-content: space-between;
-  width: 45vw;
   flex-direction: row;
+  justify-content: space-between;
   align-items: center;
+  width: 70vw;
   padding: 1em;
   border: 1px solid #ccc;
-  margin-bottom: 5px;
-}
-.anime-search-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 7.5vw;
-  /* flex-basis: calc( */
-  /* 20% */
-  /* ); Berechnet die Breite für maximal 5 Elemente pro Reihe */
-  margin: 5px; /* Abstand zwischen den Elementen */
-  padding: 1em;
-  border: 1px solid #ccc;
-
   border-radius: 15px;
-  background-color: rgb(48, 48, 53);
-  color: lightgray;
+  background-color: #fff;
+  color: black;
 }
-.anime-search-item-img {
-  width: 100px;
-  height: 100px;
-  margin-right: 10px;
-  object-fit: cover;
+.anime-item img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* Form and Input */
+form {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+#animeInput {
+  margin: 0 1em;
+  padding: 0.5em;
+  width: 40vw;
 }
 
 .button {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: row;
+  padding: 0.5em 1em;
+  color: black;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 20px;
 }
 
+button:hover {
+  background-color: #45a049;
+}
+
+/* Button Styles */
 .btn {
-  cursor: pointer;
-  background-color: #4caf50;
-  color: white;
+  padding: 0.5em 1em;
   border: none;
-  padding: 5px 10px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 12px;
-  margin: 2px;
-  transition-duration: 0.4s;
-  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-right: 5px;
 }
 
 .btn-edit {
-  background-color: #008cba;
+  background-color: #fdd835;
+  color: black;
+}
+
+.btn-edit:hover {
+  background-color: #fbc02d;
 }
 
 .btn-delete {
-  background-color: #f44336;
+  background-color: #e57373;
+  color: white;
 }
 
-/* Neue Regel für den "Bearbeiten"-Button */
-.btn-edit {
-  order: 1; /* Ändert die Reihenfolge des Elements innerhalb des flex containers */
+.btn-delete:hover {
+  background-color: #ef5350;
 }
 
-.anime-item-img {
+/* Anime Search Result Styling */
+.anime-search-result {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  justify-content: center;
+  /* padding: 10px; */
+  margin: 2vw;
+}
+
+.anime-search-result h2 {
+  text-align: center;
+  margin-bottom: 10px;
+  margin-bottom: 10px;
+  grid-column: 1 / -1;
+}
+
+/* Anime Search Item Styling */
+.anime-search-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 250px; /* Beispielbreite für jeden Sucheintrag */
+  margin: 15px;
+  padding: 1em;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  background-color: rgb(48, 48, 53);
+  color: lightgray;
+  gap: 20px;
+}
+
+.anime-search-item img {
   width: 100px;
   height: 100px;
   margin-right: 10px;
   object-fit: cover;
 }
-
-/* 
-
-schrift styling 
-
+/*
+  Text styling
 */
+
+.flex-container-row {
+  display: flex;
+  flex-direction: row;
+}
+.flex-container-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.black-border {
+  color: white; /* Textfarbe */
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; /* Textschatten in Schwarz um jeden Buchstaben */
+  padding: 5px; /* Optional: fügt Platz um den Text hinzu */
+}
+
+.white-border {
+  color: black; /* Textfarbe */
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white; /* Textschatten in Weiß um jeden Buchstaben */
+  padding: 5px; /* Optional: fügt Platz um den Text hinzu */
+}
 
 /* Großer Text */
 .large-text {
@@ -247,21 +296,4 @@ schrift styling
 /* Unterstrichener Text */
 .underline-text {
   text-decoration: underline;
-}
-
-/* Durchgestrichener Text */
-.linethrough-text {
-  text-decoration: line-through;
-}
-
-.black-border {
-  color: white; /* Textfarbe */
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; /* Textschatten in Schwarz um jeden Buchstaben */
-  padding: 5px; /* Optional: fügt Platz um den Text hinzu */
-}
-
-.white-border {
-  color: black; /* Textfarbe */
-  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white; /* Textschatten in Weiß um jeden Buchstaben */
-  padding: 5px; /* Optional: fügt Platz um den Text hinzu */
 }
