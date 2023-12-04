@@ -1,3 +1,11 @@
+/*
+
+TODO:
+-filter hinuzfügen
+-anime liste sortieren
+-zweite seite für ergebnisse und anime liste
+
+*/ 
 /**
  * @description Die Liste von Animes, die aus dem LocalStorage geladen wird oder eine leere Liste, falls keine vorhanden ist.
  * @type {Array.<string>}

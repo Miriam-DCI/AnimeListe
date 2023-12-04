@@ -15,26 +15,32 @@
         <li><a href="manga.html">Manga</a></li>
       </ul>
     </nav>
-    <div class="main-content">
-      <section class="intro-text">
-        <h1>Home</h1>
-        <p>
-          Hier kannst du deine Anime und Manga Liste verwalten. Du kannst neue
-          Einträge hinzufügen und alte Einträge löschen.
-        </p>
-      </section>
-      <section class="list-container">
-        <h2>Anime Liste</h2>
-        <form onsubmit="event.preventDefault(); addToAnimeList();">
-          <input type="text" id="animeInput" placeholder="Anime oder Manga" />
-          <button type="button" onclick="searchAnime()">Suche</button>
-        </form>
-        <div class="animeList">
-          <!-- Karten für Anime-Einträge werden hier dynamisch eingefügt -->
-        </div>
-      </section>
-      <div class="anime-search-result"></div>
-    </div>
+
+    <section class="intro-text">
+      <h1 class="black-border">Home</h1>
+      <p class="black-border">
+        Hier kannst du deine Anime und Manga Liste verwalten. Du kannst neue
+        Einträge hinzufügen und alte Einträge löschen.
+      </p>
+    </section>
+    <section class="list-container">
+      <h2 class="white-border large-text">Anime Liste</h2>
+      <form onsubmit="event.preventDefault(); addToAnimeList();">
+        <input type="text" id="animeInput" placeholder="Anime oder Manga" />
+        <button
+          type="button"
+          class="btn-search black-border"
+          onclick="searchAnime()"
+        >
+          Suche
+        </button>
+      </form>
+      <div class="animeList">
+        <!-- Karten für Anime-Einträge werden hier dynamisch eingefügt -->
+      </div>
+    </section>
+    <div class="anime-search-result"></div>
+
     <script src="script.js"></script>
   </body>
 </html>

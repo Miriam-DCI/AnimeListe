@@ -18,14 +18,14 @@ body {
   background-color: rgb(35, 62, 136);
   color: black;
   margin: 0;
-  background-image: url("https://images8.alphacoders.com/133/1331544.png"); /* Hier den Pfad zum Bild einfügen */
-  background-size: cover; /* Bildgröße anpassen */
+  padding: 0;
 }
 
 h1,
 h2 {
   text-align: center;
-  margin: 1em 0;
+  padding: 0;
+  margin: 0;
 }
 
 /* Navigation Bar */
@@ -64,19 +64,15 @@ h2 {
   color: black;
 }
 
-/* Main Content */
-.main-content {
-  padding-top: 6vh; /* Adjust to match navbar height */
-}
-
 .intro-text {
+  height: 50vh;
   width: 100vw;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding-top: 5em;
-  margin: 0 auto;
-
+  padding-top: 15rem;
+  background-image: url("https://images.alphacoders.com/736/736461.png"); /* Hier den Pfad zum Bild einfügen */
+  background-size: cover; /* Bildgröße anpassen */
   background-position: center; /* Zentrierung des Hintergrundbilds */
   color: white; /* Textfarbe auf weiß ändern, um lesbar zu bleiben */
 }
@@ -86,11 +82,13 @@ h2 {
 }
 
 .list-container {
-  max-width: 75vw;
-  margin: auto;
+  max-width: 100vw;
+  margin: 0;
   background-color: #f3f3f3;
   border-radius: 15px;
-  padding: 1em;
+  padding: 0;
+  background-image: url("https://images8.alphacoders.com/133/1331544.png"); /* Hier den Pfad zum Bild einfügen */
+  background-size: cover; /* Bildgröße anpassen */
 }
 
 .animeList {
@@ -98,7 +96,7 @@ h2 {
   grid-template-columns: 1fr;
   gap: 20px;
   justify-content: center;
-  margin: 2vw;
+  margin-left: 2vw;
 }
 
 .anime-item {
@@ -106,7 +104,7 @@ h2 {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 70vw;
+  width: 45vw;
   padding: 1em;
   border: 1px solid #ccc;
   border-radius: 15px;
@@ -127,7 +125,7 @@ form {
 }
 
 #animeInput {
-  margin: 0 1em;
+  margin: 0 2rem;
   padding: 0.5em;
   width: 40vw;
 }
@@ -174,21 +172,37 @@ button:hover {
   background-color: #ef5350;
 }
 
+.btn-search {
+  background-color: darkcyan;
+  height: 15%;
+  width: 10%;
+  color: white;
+
+  border-radius: 10px;
+}
+
+.btn-search:hover {
+  background-color: #46a049;
+}
+
 /* Anime Search Result Styling */
 .anime-search-result {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
   justify-content: center;
-  /* padding: 10px; */
-  margin: 2vw;
+
+  background-image: url("https://images5.alphacoders.com/132/1329331.png"); /* Hier den Pfad zum Bild einfügen */
+  background-size: cover; /* Bildgröße anpassen */
 }
 
 .anime-search-result h2 {
   text-align: center;
-  margin-bottom: 10px;
-  margin-bottom: 10px;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
   grid-column: 1 / -1;
+  font-size: 4em;
+  box-shadow: inset 0 -10px 0 0 lightblue;
 }
 
 /* Anime Search Item Styling */
@@ -248,12 +262,12 @@ button:hover {
 
 /* Großer Text */
 .large-text {
-  font-size: 24px;
+  font-size: 3rem;
 }
 
 /* Kleiner Text */
 .small-text {
-  font-size: 14px;
+  font-size: 1.4em;
 }
 
 /* Roter Text */
